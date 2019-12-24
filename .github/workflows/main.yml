@@ -14,11 +14,26 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter devices
       # Build
-      - run: cd nomeyho_clock && flutter pub get
-      - run: cd nomeyho_clock && flutter analyze
-      - run: cd nomeyho_clock && flutter build web
+      - run: |
+          cd nomeyho_clock
+          flutter pub get
+      - run: |
+          cd nomeyho_clock
+          flutter analyze
+      - run: |
+          cd nomeyho_clock
+          flutter build web
       # Publish
-      - run: git add nomeyho_clock/build/web -f && git commit -m "Update page" && git subtree push --prefix nomeyho_clock/build/web origin gh-pages
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add nomeyho_clock/build/web -f
+          git commit -m "Update page"
+          git subtree push --prefix nomeyho_clock/build/web origin gh-pages
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACTION_TOKEN }}
+
 #
 #  release:
 #    runs-on: ubuntu-latest
