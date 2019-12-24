@@ -1,0 +1,21 @@
+on: push
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '13.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'beta'
+      # Build
+      - run: cd nomeyho_clock
+      - run: flutter config --enable-web
+      - run: flutter devices
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build web
+      - run: git subtree push --prefix build/web origin gh-pages
