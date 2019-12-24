@@ -21,26 +21,26 @@ jobs:
       - run: flutter build web
       # Publish
       - run: git subtree push --prefix build/web origin gh-pages
-
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      # Setup
-      - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '13.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-      # Release
-      - use: rm nomeyho_clock/ios
-      - use: rm nomeyho_clock/android
-      - use: rm nomeyho_clock/web
-      - use: cd nomeyho_clock && flutter clean
-      - use: zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
-      # Artifacts
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nomeyho_clock.zip
-          path: nomeyho_clock.zip
+#
+#  release:
+#    runs-on: ubuntu-latest
+#    steps:
+#      # Setup
+#      - uses: actions/checkout@v1
+#      - uses: actions/setup-java@v1
+#        with:
+#          java-version: '13.x'
+#      - uses: subosito/flutter-action@v1
+#        with:
+#          channel: 'stable'
+#      # Release
+#      - use: rm nomeyho_clock/ios
+#      - use: rm nomeyho_clock/android
+#      - use: rm nomeyho_clock/web
+#      - use: cd nomeyho_clock && flutter clean
+#      - use: zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
+#      # Artifacts
+#      - uses: actions/upload-artifact@v1
+#        with:
+#          name: nomeyho_clock.zip
+#          path: nomeyho_clock.zip
