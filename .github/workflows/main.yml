@@ -11,16 +11,15 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'beta'
-      # Build
-      - run: cd nomeyho_clock
       - run: flutter config --enable-web
       - run: flutter devices
-      - run: pwd && flutter pub get
-      - run: flutter analyze
-      - run: flutter test
-      - run: flutter build web
+      # Build
+      - run: cd nomeyho_clock && flutter pub get
+      - run: cd nomeyho_clock && flutter analyze
+      - run: cd nomeyho_clock && flutter test
+      - run: cd nomeyho_clock && flutter build web
       # Publish
-      - run: git subtree push --prefix build/web origin gh-pages
+      - run: git subtree push --prefix nomeyho_clock/build/web origin gh-pages
 #
 #  release:
 #    runs-on: ubuntu-latest
