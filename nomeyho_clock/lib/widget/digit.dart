@@ -7,7 +7,9 @@ class Digit extends StatelessWidget {
 
   Digit({
     @required this.digit,
-  }) : assert(digit >= 0 && digit <= 9);
+  }) : assert(digit >= 0 && digit <= 9) {
+    print("ici");
+  }
 
   @override
   Widget build(BuildContext context) {

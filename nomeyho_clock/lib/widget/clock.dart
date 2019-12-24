@@ -35,7 +35,9 @@ class Clock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(seconds: 3),
+        curve: Curves.easeIn,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: new Border.all(

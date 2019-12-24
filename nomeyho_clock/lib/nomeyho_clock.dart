@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:intl/intl.dart';
-import 'package:nomeyho_clock/model/time.dart';
-import 'package:nomeyho_clock/widget/clock.dart';
 import 'package:nomeyho_clock/widget/digit.dart';
 
 class NomeyhoClock extends StatefulWidget {
@@ -56,12 +54,18 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
       _dateTime = DateTime.now();
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
-      _timer = Timer(
-        Duration(minutes: 1) -
-            Duration(seconds: _dateTime.second) -
-            Duration(milliseconds: _dateTime.millisecond),
-        _updateTime,
-      );
+//      _timer = Timer(
+//        Duration(minutes: 1) -
+//            Duration(seconds: _dateTime.second) -
+//            Duration(milliseconds: _dateTime.millisecond),
+//        _updateTime,
+//      );
+
+      // TODO
+       _timer = Timer(
+         Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+         _updateTime,
+       );
     });
   }
 
@@ -70,7 +74,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get hour =>
       DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
 
-  get minute => DateFormat('mm').format(_dateTime);
+  get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
 
   @override
   Widget build(BuildContext context) {
