@@ -18,7 +18,7 @@ jobs:
       - run: cd nomeyho_clock && flutter analyze
       - run: cd nomeyho_clock && flutter build web
       # Publish
-      - run: git subtree push --prefix nomeyho_clock/build/web origin gh-pages
+      - run: git add nomeyho_clock/build/web -f && git commit -m "Update page" && git subtree push --prefix nomeyho_clock/build/web origin gh-pages
 #
 #  release:
 #    runs-on: ubuntu-latest
