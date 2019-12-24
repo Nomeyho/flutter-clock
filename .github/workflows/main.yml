@@ -16,7 +16,6 @@ jobs:
       # Build
       - run: cd nomeyho_clock && flutter pub get
       - run: cd nomeyho_clock && flutter analyze
-      - run: cd nomeyho_clock && flutter test
       - run: cd nomeyho_clock && flutter build web
       # Publish
       - run: git subtree push --prefix nomeyho_clock/build/web origin gh-pages
