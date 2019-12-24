@@ -17,13 +17,13 @@ class Clock extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Hand(
-          color: Colors.green,
+          color: Colors.black,
           thickness: 4,
           size: 0.8,
           angleRadians: time.minutes * radiansPerTick,
         ),
         Hand(
-          color: Colors.purple,
+          color: Colors.black,
           thickness: 4,
           size: 0.8,
           angleRadians: time.hours * radiansPerHour,
@@ -34,15 +34,29 @@ class Clock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: new Border.all(
-          width: 1.0,
-          color: Colors.red,
-        ),
+    return SizedBox.expand(
+      child: Container(
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: new Border.all(
+              width: 0.0,
+              color: Colors.grey,
+            ),
+            color: Colors.transparent,
+            boxShadow: [
+              const BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(0.0, 0.0),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                offset: const Offset(-0.5, -0.5),
+                spreadRadius: -0.5,
+                blurRadius: 1.0,
+              ),
+            ]),
+        child: _drawHands(),
       ),
-      child: time == null ? null : _drawHands(),
     );
   }
 }

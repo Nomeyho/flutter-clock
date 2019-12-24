@@ -9,7 +9,7 @@ import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:nomeyho_clock/widget/nomeyho_clock.dart';
+import 'package:nomeyho_clock/nomeyho_clock.dart';
 
 void main() {
   // A temporary measure until Platform supports web and TargetPlatform supports
