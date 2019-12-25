@@ -39,18 +39,23 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
   }
 
+  get _cuveAnimation => CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutExpo,
+      );
+
   Animation<double> _getMinuteAnimation(previousTime, time) {
     return Tween<double>(
       begin: previousTime.minutes,
       end: time.minutes,
-    ).animate(_controller);
+    ).animate(_cuveAnimation);
   }
 
   Animation<double> _getHourAnimation(previousTime, time) {
     return Tween<double>(
       begin: previousTime.hours,
       end: time.hours,
-    ).animate(_controller);
+    ).animate(_cuveAnimation);
   }
 
   Clock _buildClock(previousTime, time) {
