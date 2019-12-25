@@ -1,3 +1,4 @@
+# TODO: Use a single job once the Web is available in the stable channel
 on: push
 jobs:
   build-and-test:
@@ -51,7 +52,6 @@ jobs:
           rm -rf nomeyho_clock/web
       - run: |
           cd nomeyho_clock
-          flutter clean
           zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
       # Artifacts
       - uses: actions/upload-artifact@v1
