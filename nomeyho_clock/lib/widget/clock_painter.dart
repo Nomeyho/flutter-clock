@@ -21,6 +21,7 @@ class ClockPainter extends CustomPainter {
         /// Border
         assert(borderColor != null),
         assert(borderLineWidth != null),
+        assert(borderLineWidth > 0),
         borderPaint = Paint()
           ..color = borderColor
           ..strokeWidth = borderLineWidth
@@ -28,8 +29,10 @@ class ClockPainter extends CustomPainter {
 
         /// Hour tick
         assert(hourTickMarkLength != null),
+        assert(hourTickMarkLength > 0),
         assert(hourTickMarkColor != null),
         assert(hourTickMarkWidth != null),
+        assert(hourTickMarkWidth > 0),
         hourTickMarkPaint = Paint()
           ..color = hourTickMarkColor
           ..strokeWidth = hourTickMarkWidth
@@ -37,8 +40,10 @@ class ClockPainter extends CustomPainter {
 
         /// Minute tick
         assert(minuteTickMarkLength != null),
+        assert(minuteTickMarkLength > 0),
         assert(minuteTickColor != null),
         assert(minuteTickMarkWidth != null),
+        assert(minuteTickMarkWidth > 0),
         minuteTickPaint = Paint()
           ..color = minuteTickColor
           ..strokeWidth = minuteTickMarkWidth
@@ -58,7 +63,7 @@ class ClockPainter extends CustomPainter {
   void _paintBorderShadow(Canvas canvas, Offset offset, double radius) {
     final rect = Rect.fromCircle(center: offset, radius: radius);
     final path = Path()..addArc(rect, 0, 2 * math.pi);
-    canvas.drawShadow(path, Colors.black, 2, true);
+    canvas.drawShadow(path, Colors.black, 5, true);
   }
 
   void _paintBorders(Canvas canvas, Size size) {

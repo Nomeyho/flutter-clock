@@ -20,10 +20,11 @@ class Clock extends StatelessWidget {
       animation: minuteAnimation,
       builder: (context, index) {
         return Hand(
-          color: Colors.black,
-          thickness: 4,
           size: 0.75,
+          thickness: 4,
           angleRadians: minuteAnimation.value * radiansPerTick,
+          color: Colors.black,
+          centerColor: Colors.yellow,
         );
       },
     );
@@ -34,16 +35,17 @@ class Clock extends StatelessWidget {
       animation: hourAnimation,
       builder: (context, index) {
         return Hand(
-          color: Colors.black,
-          thickness: 4,
           size: 0.75,
+          thickness: 4,
           angleRadians: hourAnimation.value * radiansPerHour,
+          color: Colors.black,
+          centerColor: Colors.yellow,
         );
       },
     );
   }
 
-  Widget _buildBackground() {
+  Widget _buildClock() {
     return Center(
       child: SizedBox.expand(
         child: CustomPaint(
@@ -67,7 +69,7 @@ class Clock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        _buildBackground(),
+        _buildClock(),
         _buildMinuteHand(),
         _buildHourHand(),
       ],
