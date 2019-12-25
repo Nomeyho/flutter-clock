@@ -29,7 +29,6 @@ jobs:
           git config --local user.name "GitHub Action"
           git add nomeyho_clock/build/web -f
           git commit -m "Update page"
-          git subtree push --prefix nomeyho_clock/build/web origin gh-pages
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

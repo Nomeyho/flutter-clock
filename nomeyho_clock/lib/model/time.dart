@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class Time {
+class Time extends Equatable {
   final double hours;
   final double minutes;
 
@@ -9,4 +10,7 @@ class Time {
     @required this.minutes,
   })  : assert(hours >= 0 && hours <= 12),
         assert(minutes >= 0 && minutes <= 60);
+
+  @override
+  List<Object> get props => [hours, hours];
 }

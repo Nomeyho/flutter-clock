@@ -62,10 +62,10 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 //      );
 
       // TODO
-       _timer = Timer(
-         Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
-         _updateTime,
-       );
+      _timer = Timer(
+        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+        _updateTime,
+      );
     });
   }
 
@@ -74,7 +74,8 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get hour =>
       DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
 
-  get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
+  // get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
+  get minute => DateFormat('mm').format(_dateTime);
 
   @override
   Widget build(BuildContext context) {

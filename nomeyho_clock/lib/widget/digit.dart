@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nomeyho_clock/model/time.dart';
+import 'package:nomeyho_clock/utils/zip.dart';
 import 'package:nomeyho_clock/widget/clock.dart';
 
 class Digit extends StatelessWidget {
@@ -7,8 +8,15 @@ class Digit extends StatelessWidget {
 
   Digit({
     @required this.digit,
-  }) : assert(digit >= 0 && digit <= 9) {
-    print("ici");
+  }) : assert(digit >= 0 && digit <= 9);
+
+  _buildClocks() {
+    final previousTimes = digit > 0 ? _digitToTime[digit - 1] : _defaultTimes;
+    final times = _digitToTime[digit];
+
+    return zip([previousTimes, times])
+        .map((t) => Clock(previousTime: t[0], time: t[1]))
+        .toList(growable: false);
   }
 
   @override
@@ -18,15 +26,31 @@ class Digit extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
-        children: _digitToTime[digit]
-            .map((time) => Clock(time: time))
-            .toList(growable: false),
+        children: _buildClocks(),
       ),
     );
   }
 }
 
+const _defaultTimes = [
+  Time(hours: 7.5, minutes: 37.5),
+  Time(hours: 7.5, minutes: 37.5),
+  Time(hours: 7.5, minutes: 37.5),
+  Time(hours: 7.5, minutes: 37.5),
+  Time(hours: 7.5, minutes: 37.5),
+  Time(hours: 7.5, minutes: 37.5)
+];
+
 const _digitToTime = [
+  // -1
+  [
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 7.5, minutes: 37.5)
+  ],
   // 0
   [
     Time(hours: 6, minutes: 15),
