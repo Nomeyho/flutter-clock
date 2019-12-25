@@ -5,8 +5,7 @@ import 'package:nomeyho_clock/model/time.dart';
 /// (e.g. 7-segment display).
 ///
 /// This method returns an array of 6 [Time] values representing the segments
-/// of the provided [digit]. A default [Time] value is returned is the digit
-/// is not in range [0-9].
+/// of the provided [digit].
 ///
 /// Each time value represents up to two segments once rendered as an analog
 /// clock (one for the hour hand and one for the minute hand).
@@ -19,20 +18,10 @@ import 'package:nomeyho_clock/model/time.dart';
 /// 🕒🕘
 List<Time> getTimesForDigit(int digit) {
   if (digit < 0 || digit > 9) {
-    return _defaultTimes;
-  } else {
-    return _digitToTime[digit];
+    throw ArgumentError("Digit is not in range [0-9]");
   }
+  return _digitToTime[digit];
 }
-
-const _defaultTimes = [
-  const Time(hours: 7.5, minutes: 37.5),
-  const Time(hours: 7.5, minutes: 37.5),
-  const Time(hours: 7.5, minutes: 37.5),
-  const Time(hours: 7.5, minutes: 37.5),
-  const Time(hours: 7.5, minutes: 37.5),
-  const Time(hours: 7.5, minutes: 37.5)
-];
 
 const _digitToTime = [
   // 0
