@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:intl/intl.dart';
+import 'package:nomeyho_clock/widget/clock.dart';
 import 'package:nomeyho_clock/widget/digit.dart';
 
 class NomeyhoClock extends StatefulWidget {
@@ -94,12 +95,6 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
       ),
       child: Container(
         color: Colors.white,
-        /*
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Clock(time: Time(hours: 2, minutes: 35)),
-        )
-        */
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(

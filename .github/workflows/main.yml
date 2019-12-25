@@ -46,13 +46,13 @@ jobs:
           channel: 'stable'
       # Release
       - run: |
-        rm nomeyho_clock/ios
-        rm nomeyho_clock/android
-        rm nomeyho_clock/web
+          rm nomeyho_clock/ios
+          rm nomeyho_clock/android
+          rm nomeyho_clock/web
       - run: |
-        cd nomeyho_clock
-        flutter clean
-        zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
+          cd nomeyho_clock
+          flutter clean
+          zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
       # Artifacts
       - uses: actions/upload-artifact@v1
         with:
