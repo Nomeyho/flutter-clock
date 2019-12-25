@@ -46,9 +46,9 @@ jobs:
           channel: 'stable'
       # Release
       - run: |
-          rm nomeyho_clock/ios
-          rm nomeyho_clock/android
-          rm nomeyho_clock/web
+          rm -rf nomeyho_clock/ios
+          rm -rf nomeyho_clock/android
+          rm -rf nomeyho_clock/web
       - run: |
           cd nomeyho_clock
           flutter clean
