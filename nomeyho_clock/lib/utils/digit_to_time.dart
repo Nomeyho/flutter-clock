@@ -4,8 +4,8 @@ import 'package:nomeyho_clock/model/time.dart';
 /// A digit is represented by segments on a digital display
 /// (e.g. 7-segment display).
 ///
-/// This method returns an array of 6 [Time] values representing the segments
-/// of the provided [digit].
+/// This method returns an array of 6 [Time] values that corresponds to
+/// the segments of the provided [digit].
 ///
 /// Each time value represents up to two segments once rendered as an analog
 /// clock (one for the hour hand and one for the minute hand).

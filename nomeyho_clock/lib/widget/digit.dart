@@ -53,25 +53,19 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     ).animate(_controller);
   }
 
+  _buildClock(previousTime, time) {
+    return Clock(
+      minuteAnimation: _getMinuteAnimation(previousTime, time),
+      hourAnimation: _getHourAnimation(previousTime, time),
+    );
+  }
+
   _buildClocks() {
-    final previousTimes = getTimesForDigit(widget.previousDigit);
     final times = getTimesForDigit(widget.digit);
-    final clocks = List<Clock>();
-
-    for (var i = 0; i < 6; ++i) {
-      final previousTime = previousTimes[i];
-      final time = times[i];
-
-      final minuteAnimation = _getMinuteAnimation(previousTime, time);
-      final hourAnimation = _getHourAnimation(previousTime, time);
-
-      clocks.add(Clock(
-        minuteAnimation: minuteAnimation,
-        hourAnimation: hourAnimation,
-      ));
-    }
-
-    return clocks;
+    final previousTimes = getTimesForDigit(widget.previousDigit);
+    return List.generate(times.length, (i) => i)
+        .map((i) => _buildClock(previousTimes[i], times[i]))
+        .toList(growable: false);
   }
 
   @override

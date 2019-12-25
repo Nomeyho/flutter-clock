@@ -79,6 +79,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   @override
   Widget build(BuildContext context) {
+    /// Gets the tens and units digits for both the hours and the minutes
     final digits = [
       int.parse(hour[0]),
       int.parse(hour[1]),
