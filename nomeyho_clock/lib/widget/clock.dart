@@ -29,7 +29,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     );
     _minuteAnimation = Tween<double>(
@@ -51,7 +51,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Clock oldWidget) {
-    if(this.widget.time == oldWidget.time) {
+    if(this.widget.time == oldWidget.time && widget.previousTime == oldWidget.previousTime) {
       return;
     }
 
@@ -60,17 +60,11 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
     _minuteAnimation = Tween<double>(
       begin: widget.previousTime.minutes,
       end: widget.time.minutes,
-    ).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
+    ).animate(_controller);
     _hourAnimation = Tween<double>(
       begin: widget.previousTime.hours,
       end: widget.time.hours,
-    ).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
+    ).animate(_controller);
     _controller.forward();
     super.didUpdateWidget(oldWidget);
   }

@@ -42,15 +42,6 @@ const _defaultTimes = [
 ];
 
 const _digitToTime = [
-  // -1
-  [
-    Time(hours: 7.5, minutes: 37.5),
-    Time(hours: 7.5, minutes: 37.5),
-    Time(hours: 7.5, minutes: 37.5),
-    Time(hours: 7.5, minutes: 37.5),
-    Time(hours: 7.5, minutes: 37.5),
-    Time(hours: 7.5, minutes: 37.5)
-  ],
   // 0
   [
     Time(hours: 6, minutes: 15),
@@ -116,12 +107,12 @@ const _digitToTime = [
   ],
   // 7
   [
-    Time(hours: 6, minutes: 15),
+    Time(hours: 3, minutes: 15),
     Time(hours: 6, minutes: 45),
-    Time(hours: 0, minutes: 15),
-    Time(hours: 0, minutes: 45),
-    Time(hours: 0, minutes: 15),
-    Time(hours: 0, minutes: 45)
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 6, minutes: 0),
+    Time(hours: 7.5, minutes: 37.5),
+    Time(hours: 0, minutes: 0)
   ],
   // 8
   [

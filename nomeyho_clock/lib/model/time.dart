@@ -12,5 +12,5 @@ class Time extends Equatable {
         assert(minutes >= 0 && minutes <= 60);
 
   @override
-  List<Object> get props => [hours, hours];
+  List<Object> get props => [hours, minutes];
 }

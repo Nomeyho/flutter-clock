@@ -74,8 +74,8 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get hour =>
       DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
 
-  // get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
-  get minute => DateFormat('mm').format(_dateTime);
+  get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
+  // get minute => DateFormat('mm').format(_dateTime);
 
   @override
   Widget build(BuildContext context) {
