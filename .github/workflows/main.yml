@@ -50,9 +50,7 @@ jobs:
           rm -rf nomeyho_clock/ios
           rm -rf nomeyho_clock/android
           rm -rf nomeyho_clock/web
-      - run: |
-          cd nomeyho_clock
-          zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
+      - run: zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
       # Artifacts
       - uses: actions/upload-artifact@v1
         with:
