@@ -46,31 +46,17 @@ class Clock extends StatelessWidget {
   Widget _buildBackground() {
     return Center(
       child: SizedBox.expand(
-        child: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              /*
-              BoxShadow(
-                color: Colors.blue,
-                blurRadius: 10,
-                spreadRadius: 1,
-                offset: Offset(2, 2),
-              )
-              */
-            ],
-          ),
-          child: CustomPaint(
-            painter: ClockPainter(
-              borderColor: Colors.grey,
-              borderLineWidth: 1,
-              hourTickMarkLength: 10,
-              hourTickMarkColor: Colors.black,
-              hourTickMarkWidth: 1.5,
-              minuteTickMarkLength: 5,
-              minuteTickColor: Colors.grey,
-              minuteTickMarkWidth: 1,
-            ),
+        child: CustomPaint(
+          painter: ClockPainter(
+            backgroundColor: Colors.white,
+            borderColor: Colors.grey,
+            borderLineWidth: 1,
+            hourTickMarkLength: 6,
+            hourTickMarkColor: Colors.black,
+            hourTickMarkWidth: 1.5,
+            minuteTickMarkLength: 3,
+            minuteTickColor: Colors.grey,
+            minuteTickMarkWidth: 1,
           ),
         ),
       ),
