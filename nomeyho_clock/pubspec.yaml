@@ -18,3 +18,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    # https://fonts.google.com/specimen/Barlow
+    - family: Barlow
+      fonts:
+        - asset: 'assets/fonts/Barlow-Bold.ttf'
+          weight: 700
+        - asset: 'assets/fonts/Barlow-Regular.ttf'
+          weight: 400

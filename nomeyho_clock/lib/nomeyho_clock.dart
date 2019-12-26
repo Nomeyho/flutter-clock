@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:intl/intl.dart';
+import 'package:nomeyho_clock/nomeyho_theme.dart';
 import 'package:nomeyho_clock/widget/date.dart';
 import 'package:nomeyho_clock/widget/digit.dart';
 
@@ -78,6 +79,16 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
   // get minute => DateFormat('mm').format(_dateTime);
 
+  Widget _withSemantics({Widget child}) {
+    return Semantics.fromProperties(
+      properties: SemanticsProperties(
+        label: 'Digital clock with time $time',
+        value: time,
+      ),
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     /// Gets the tens and units digits for both the hours and the minutes
@@ -88,25 +99,26 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
       int.parse(minute[1])
     ];
 
-    return Semantics.fromProperties(
-      properties: SemanticsProperties(
-        label: 'Digital clock with time $time',
-        value: time,
-      ),
-      child: Container(
-        color: Colors.white,
-        child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Date(dateTime: _dateTime),
-                Row(
-                    children: digits
-                        .map((digit) => Digit(digit: digit))
-                        .toList(growable: false))
-              ],
-            )),
+    return _withSemantics(
+      child: NomeyhoTheme(
+        /// Use a builder to get access to the inherited theme
+        child: Builder(builder: (context) {
+          return Container(
+            color: NomeyhoTheme.of(context).backgroundColor,
+            child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Date(dateTime: _dateTime),
+                    Row(
+                        children: digits
+                            .map((digit) => Digit(digit: digit))
+                            .toList(growable: false))
+                  ],
+                )),
+          );
+        }),
       ),
     );
   }

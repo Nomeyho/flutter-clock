@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nomeyho_clock/nomeyho_theme.dart';
 import 'package:nomeyho_clock/widget/clock_painter.dart';
 import 'package:nomeyho_clock/widget/hand.dart';
 import 'package:vector_math/vector_math_64.dart' show radians;
@@ -20,11 +21,11 @@ class Clock extends StatelessWidget {
       animation: minuteAnimation,
       builder: (context, index) {
         return Hand(
-          size: 0.75,
+          size: 0.60,
           thickness: 4,
           angleRadians: minuteAnimation.value * radiansPerTick,
-          color: Colors.black,
-          centerColor: Colors.yellow,
+          color: NomeyhoTheme.of(context).accent_700,
+          centerColor: NomeyhoTheme.of(context).primary_700,
         );
       },
     );
@@ -35,29 +36,30 @@ class Clock extends StatelessWidget {
       animation: hourAnimation,
       builder: (context, index) {
         return Hand(
-          size: 0.75,
+          size: 0.60,
           thickness: 4,
           angleRadians: hourAnimation.value * radiansPerHour,
-          color: Colors.black,
-          centerColor: Colors.yellow,
+          color: NomeyhoTheme.of(context).accent_700,
+          centerColor: NomeyhoTheme.of(context).primary_700,
         );
       },
     );
   }
 
-  Widget _buildClock() {
+  Widget _buildClock(BuildContext context) {
     return Center(
       child: SizedBox.expand(
         child: CustomPaint(
           painter: ClockPainter(
-            backgroundColor: Colors.white,
-            borderColor: Colors.grey,
+            backgroundColor: Colors.white.withAlpha(20),
+            borderColor: NomeyhoTheme.of(context).primary_700,
             borderLineWidth: 1,
-            hourTickMarkLength: 6,
-            hourTickMarkColor: Colors.black,
+            hourTickMarkLength: 4,
+            hourTickMarkColor: NomeyhoTheme.of(context).accent_700,
             hourTickMarkWidth: 1.5,
-            minuteTickMarkLength: 3,
-            minuteTickColor: Colors.grey,
+            minuteTickMarkLength: 2,
+            minuteTickColor: NomeyhoTheme.of(context).primary_700,
+
             minuteTickMarkWidth: 1,
           ),
         ),
@@ -69,7 +71,7 @@ class Clock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        _buildClock(),
+        _buildClock(context),
         _buildMinuteHand(),
         _buildHourHand(),
       ],

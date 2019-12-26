@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// [CustomPainter] that draws a clock background.
 class ClockPainter extends CustomPainter {
-  // TODO @required vs assert(!= null)
+
   ClockPainter({
     @required Color backgroundColor,
     @required Color borderColor,
@@ -57,13 +57,19 @@ class ClockPainter extends CustomPainter {
   final Paint minuteTickPaint;
 
   /// As a percentage of the parent width
-  static const double outerBorderRadius = 0.9;
+  static const double outerBorderRadius = 0.95;
   static const double innerBorderRadius = 0.8;
 
-  void _paintBorderShadow(Canvas canvas, Offset offset, double radius) {
-    final rect = Rect.fromCircle(center: offset, radius: radius);
+  void _paintOuterShadow(Canvas canvas, Offset offset, double outerRadius) {
+    final rect = Rect.fromCircle(center: offset, radius: outerRadius);
     final path = Path()..addArc(rect, 0, 2 * math.pi);
     canvas.drawShadow(path, Colors.black, 5, true);
+  }
+
+  void _paintInnerShadow(Canvas canvas, Offset offset, double innerRadius) {
+    final rect = Rect.fromCircle(center: offset, radius: innerRadius * 1.1);
+    final path = Path()..addArc(rect, 0, 2 * math.pi);
+    canvas.drawShadow(path, Colors.transparent, 2, true);
   }
 
   void _paintBorders(Canvas canvas, Size size) {
@@ -71,10 +77,11 @@ class ClockPainter extends CustomPainter {
     final outerRadius = (size.shortestSide / 2) * outerBorderRadius;
     final innerRadius = (size.shortestSide / 2) * innerBorderRadius;
 
-    _paintBorderShadow(canvas, center.translate(2, 2), outerRadius);
-    canvas.drawCircle(center, outerRadius, backgroundPaint);
-    canvas.drawCircle(center, outerRadius, borderPaint);
-    canvas.drawCircle(center, innerRadius, borderPaint);
+   _paintOuterShadow(canvas, center.translate(0, 0), outerRadius);
+   canvas.drawCircle(center, outerRadius, backgroundPaint);
+   _paintInnerShadow(canvas, center.translate(0, 0), innerRadius);
+   canvas.drawCircle(center, outerRadius, borderPaint);
+   // canvas.drawCircle(center, innerRadius, borderPaint);
   }
 
   void _paintTickMarks(Canvas canvas, Size size) {
@@ -93,7 +100,7 @@ class ClockPainter extends CustomPainter {
         canvas.drawLine(startOffset, endHourOffset, hourTickMarkPaint);
       } else {
         /// minute
-        canvas.drawLine(startOffset, endMinuteOffset, minuteTickPaint);
+        // canvas.drawLine(startOffset, endMinuteOffset, minuteTickPaint);
       }
       canvas.rotate(angleIncrement);
     }
