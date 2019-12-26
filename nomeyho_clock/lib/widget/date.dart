@@ -8,7 +8,7 @@ class Date extends StatelessWidget {
 
   Date({
     @required this.dateTime,
-  });
+  }): assert(dateTime != null);
 
   get day => '${DateFormat('EEEE').format(dateTime)}';
 
@@ -17,7 +17,7 @@ class Date extends StatelessWidget {
   Widget _withSemantics({Widget child}) {
     return Semantics.fromProperties(
       properties: SemanticsProperties(
-        label: 'Text with day date $day, $date',
+        label: 'Text with day $day and date $date',
         value: '$day, $date',
       ),
       child: child,
@@ -40,6 +40,7 @@ class Date extends StatelessWidget {
               TextSpan(
                 text: '$day, ',
                 style: TextStyle(
+                  fontWeight: FontWeight.w100,
                   color: NomeyhoTheme.of(context).primary_700,
                 ),
               ),

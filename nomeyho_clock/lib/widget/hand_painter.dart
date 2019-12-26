@@ -9,27 +9,22 @@ class HandPainter extends CustomPainter {
     @required this.lineWidth,
     @required this.angleRadians,
     @required this.color,
-    @required this.centerColor,
   })  : assert(handSize != null),
         assert(lineWidth != null),
         assert(angleRadians != null),
         assert(color != null),
         assert(handSize >= 0.0),
-        assert(handSize <= 1.0),
-        assert(centerColor != null);
+        assert(handSize <= 1.0);
 
   final double handSize;
   final double lineWidth;
   final double angleRadians;
   final Color color;
-  final Color centerColor;
 
-  get handPaint => Paint()
+  handPaint(StrokeCap strokeCap) => Paint()
     ..color = color
     ..strokeWidth = lineWidth
-    ..strokeCap = StrokeCap.round;
-
-  get centerPaint => Paint()..color = centerColor;
+    ..strokeCap = strokeCap;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -37,10 +32,11 @@ class HandPainter extends CustomPainter {
     // We want to start at the top, not at the x-axis, so add pi/2.
     final angle = angleRadians - math.pi / 2.0;
     final length = size.shortestSide * 0.5 * handSize;
-    final position = center + Offset(math.cos(angle), math.sin(angle)) * length;
+    final middle = center + Offset(math.cos(angle), math.sin(angle)) * length / 2;
+    final end = center + Offset(math.cos(angle), math.sin(angle)) * length;
 
-    canvas.drawLine(center, position, handPaint);
-    canvas.drawCircle(center, lineWidth / 3, centerPaint);
+    canvas.drawLine(center, middle, handPaint(StrokeCap.round));
+    canvas.drawLine(middle,  end, handPaint(StrokeCap.square));
   }
 
   @override
@@ -48,7 +44,6 @@ class HandPainter extends CustomPainter {
     return oldDelegate.handSize != handSize ||
         oldDelegate.lineWidth != lineWidth ||
         oldDelegate.angleRadians != angleRadians ||
-        oldDelegate.color != color ||
-        oldDelegate.centerColor != centerColor;
+        oldDelegate.color != color;
   }
 }

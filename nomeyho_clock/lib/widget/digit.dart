@@ -4,10 +4,19 @@ import 'package:nomeyho_clock/widget/clock.dart';
 
 class Digit extends StatefulWidget {
   final int digit;
+  final Color color;
+  final double thickness;
 
   Digit({
     @required this.digit,
-  }) : assert(digit >= 0 && digit <= 9);
+    @required this.color,
+    @required this.thickness,
+  })
+      :
+        assert(digit != null),
+        assert(digit >= 0 && digit <= 9),
+        assert(color != null),
+        assert(thickness != null);
 
   /// Let 0 be the predecessor of 9.
   get previousDigit => digit == 0 ? 9 : (digit - 1);
@@ -39,7 +48,8 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
   }
 
-  get _cuveAnimation => CurvedAnimation(
+  get _curveAnimation =>
+      CurvedAnimation(
         parent: _controller,
         curve: Curves.easeOutExpo,
       );
@@ -48,20 +58,22 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     return Tween<double>(
       begin: previousTime.minutes,
       end: time.minutes,
-    ).animate(_cuveAnimation);
+    ).animate(_curveAnimation);
   }
 
   Animation<double> _getHourAnimation(previousTime, time) {
     return Tween<double>(
       begin: previousTime.hours,
       end: time.hours,
-    ).animate(_cuveAnimation);
+    ).animate(_curveAnimation);
   }
 
   Clock _buildClock(previousTime, time) {
     return Clock(
       minuteAnimation: _getMinuteAnimation(previousTime, time),
       hourAnimation: _getHourAnimation(previousTime, time),
+      handColor: widget.color,
+      thickness: widget.thickness,
     );
   }
 

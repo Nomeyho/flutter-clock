@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// TODO use a scale function to keep proportion?
+// TODO: no need for the inherited widget after refactoring "date.dart"
 class NomeyhoTheme extends InheritedWidget {
   /// Light theme
   static final NomeyhoThemeData lightTheme = NomeyhoThemeData(
@@ -37,7 +37,9 @@ class NomeyhoTheme extends InheritedWidget {
 
 class NomeyhoThemeData {
   final Color backgroundColor;
+  // primary
   final Color primary_700;
+  // accent
   final Color accent_700;
   final String fontFamily;
 

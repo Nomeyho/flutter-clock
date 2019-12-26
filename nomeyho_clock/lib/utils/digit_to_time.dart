@@ -23,6 +23,7 @@ List<Time> getTimesForDigit(int digit) {
   return _digitToTime[digit];
 }
 
+// TODO fix animation continuity => shortest path
 const _digitToTime = [
   // 0
   [
@@ -109,8 +110,8 @@ const _digitToTime = [
   [
     const Time(hours: 6, minutes: 15),
     const Time(hours: 6, minutes: 45),
-    const Time(hours: 3, minutes: 0),
-    const Time(hours: 6, minutes: 0),
+    const Time(hours: 0, minutes: 15),
+    const Time(hours: 0, minutes: 45),
     const Time(hours: 3, minutes: 15),
     const Time(hours: 0, minutes: 45)
   ],

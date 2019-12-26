@@ -91,14 +91,6 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   @override
   Widget build(BuildContext context) {
-    /// Gets the tens and units digits for both the hours and the minutes
-    final digits = [
-      int.parse(hour[0]),
-      int.parse(hour[1]),
-      int.parse(minute[0]),
-      int.parse(minute[1])
-    ];
-
     return _withSemantics(
       child: NomeyhoTheme(
         /// Use a builder to get access to the inherited theme
@@ -106,17 +98,40 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           return Container(
             color: NomeyhoTheme.of(context).backgroundColor,
             child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Date(dateTime: _dateTime),
-                    Row(
-                        children: digits
-                            .map((digit) => Digit(digit: digit))
-                            .toList(growable: false))
-                  ],
-                )),
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Date(dateTime: _dateTime),
+                  Row(children: [
+                    // Hour: tens digit
+                    Digit(
+                      digit: int.parse(hour[0]),
+                      color: NomeyhoTheme.of(context).accent_700,
+                      thickness: 6,
+                    ),
+                    // Hour: units digit
+                    Digit(
+                      digit: int.parse(hour[1]),
+                      color: NomeyhoTheme.of(context).accent_700,
+                      thickness: 6,
+                    ),
+                    // Minute: tens digit
+                    Digit(
+                      digit: int.parse(minute[0]),
+                      color: NomeyhoTheme.of(context).primary_700,
+                      thickness: 2,
+                    ),
+                    // Minute: units digit
+                    Digit(
+                      digit: int.parse(minute[1]),
+                      color: NomeyhoTheme.of(context).primary_700,
+                      thickness: 2,
+                    ),
+                  ])
+                ],
+              ),
+            ),
           );
         }),
       ),

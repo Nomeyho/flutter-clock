@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nomeyho_clock/nomeyho_theme.dart';
 import 'package:nomeyho_clock/widget/clock_painter.dart';
 import 'package:nomeyho_clock/widget/hand.dart';
 import 'package:vector_math/vector_math_64.dart' show radians;
@@ -10,11 +9,18 @@ final radiansPerHour = radians(360 / 12);
 class Clock extends StatelessWidget {
   final Animation<double> minuteAnimation;
   final Animation<double> hourAnimation;
+  final Color handColor;
+  final double thickness;
 
   Clock({
     @required this.minuteAnimation,
     @required this.hourAnimation,
-  });
+    @required this.handColor,
+    @required this.thickness,
+  })  : assert(minuteAnimation != null),
+        assert(hourAnimation != null),
+        assert(handColor != null),
+        assert(thickness != null);
 
   Widget _buildMinuteHand() {
     return AnimatedBuilder(
@@ -22,10 +28,9 @@ class Clock extends StatelessWidget {
       builder: (context, index) {
         return Hand(
           size: 0.60,
-          thickness: 4,
+          thickness: thickness,
           angleRadians: minuteAnimation.value * radiansPerTick,
-          color: NomeyhoTheme.of(context).accent_700,
-          centerColor: NomeyhoTheme.of(context).primary_700,
+          color: handColor,
         );
       },
     );
@@ -37,10 +42,9 @@ class Clock extends StatelessWidget {
       builder: (context, index) {
         return Hand(
           size: 0.60,
-          thickness: 4,
+          thickness: thickness,
           angleRadians: hourAnimation.value * radiansPerHour,
-          color: NomeyhoTheme.of(context).accent_700,
-          centerColor: NomeyhoTheme.of(context).primary_700,
+          color: handColor,
         );
       },
     );
@@ -51,16 +55,11 @@ class Clock extends StatelessWidget {
       child: SizedBox.expand(
         child: CustomPaint(
           painter: ClockPainter(
-            backgroundColor: Colors.white.withAlpha(20),
-            borderColor: NomeyhoTheme.of(context).primary_700,
-            borderLineWidth: 1,
-            hourTickMarkLength: 4,
-            hourTickMarkColor: NomeyhoTheme.of(context).accent_700,
-            hourTickMarkWidth: 1.5,
-            minuteTickMarkLength: 2,
-            minuteTickColor: NomeyhoTheme.of(context).primary_700,
-
-            minuteTickMarkWidth: 1,
+            borderColor: Colors.white.withAlpha(10), // TODO quid light theme?
+            borderLineWidth: 2,
+            tickMarkLength: 4,
+            tickMarkColor: Colors.white.withAlpha(10), // TODO
+            tickMarkWidth: 2,
           ),
         ),
       ),
