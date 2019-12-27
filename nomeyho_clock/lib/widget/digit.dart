@@ -7,19 +7,20 @@ class Digit extends StatefulWidget {
   final Color color;
   final Color clockColor;
   final double thickness;
+  final int animationDuration;
 
   Digit({
     @required this.digit,
     @required this.color,
     @required this.clockColor,
     @required this.thickness,
-  })
-      :
-        assert(digit != null),
+    @required this.animationDuration,
+  })  : assert(digit != null),
         assert(digit >= 0 && digit <= 9),
         assert(color != null),
         assert(clockColor != null),
-        assert(thickness != null);
+        assert(thickness != null),
+        assert(animationDuration != null);
 
   /// Let 0 be the predecessor of 9.
   get previousDigit => digit == 0 ? 9 : (digit - 1);
@@ -35,7 +36,7 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 3000),
+      duration: Duration(milliseconds: widget.animationDuration),
       vsync: this,
     );
     _controller.forward();
@@ -51,23 +52,28 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
   }
 
-  get _curveAnimation =>
-      CurvedAnimation(
+  get _curveAnimation => CurvedAnimation(
         parent: _controller,
         curve: Curves.easeOutExpo,
       );
 
   Animation<double> _getMinuteAnimation(previousTime, time) {
+    final previousMinutes = previousTime.minutes;
+    final minutes = time.minutes;
+
     return Tween<double>(
-      begin: previousTime.minutes,
-      end: time.minutes,
+      begin: previousMinutes,
+      end: previousMinutes > minutes ? minutes + 60 : minutes, // clockwise
     ).animate(_curveAnimation);
   }
 
   Animation<double> _getHourAnimation(previousTime, time) {
+    final previousHours = previousTime.hours;
+    final hours = time.hours;
+
     return Tween<double>(
-      begin: previousTime.hours,
-      end: time.hours,
+      begin: previousHours,
+      end: previousHours > hours ? hours + 12 : hours, // clockwise
     ).animate(_curveAnimation);
   }
 

@@ -53,13 +53,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   void _updateTime() {
     setState(() {
-      if(_dateTime == null) {
-        _dateTime = DateTime.parse("2020-01-01 00:00:00");
-      } else if (DateTime.parse("2020-01-01 00:00:00").compareTo(_dateTime) == 0) {
-        _dateTime = DateTime.parse("2020-01-01 00:00:01");
-      } else {
-        _dateTime = DateTime.parse("2020-01-01 00:00:00");
-      }
+      _dateTime = DateTime.now();
 
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
@@ -72,7 +66,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
       // TODO
       _timer = Timer(
-        Duration(seconds: 3) - Duration(milliseconds: _dateTime.millisecond),
+        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
     });
@@ -103,6 +97,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.accentColor,
           clockColor: theme.clockColor,
           thickness: 6,
+          animationDuration: theme.digitAnimationDuration,
         ),
         // Hour: units digit
         Digit(
@@ -110,6 +105,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.accentColor,
           clockColor: theme.clockColor,
           thickness: 6,
+          animationDuration: theme.digitAnimationDuration,
         ),
         // Minute: tens digit
         Digit(
@@ -117,6 +113,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.primaryColor,
           clockColor: theme.clockColor,
           thickness: 2,
+          animationDuration: theme.digitAnimationDuration,
         ),
         // Minute: units digit
         Digit(
@@ -124,6 +121,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.primaryColor,
           clockColor: theme.clockColor,
           thickness: 2,
+          animationDuration: theme.digitAnimationDuration,
         ),
       ]),
     );
