@@ -53,7 +53,14 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   void _updateTime() {
     setState(() {
-      _dateTime = DateTime.now();
+      if(_dateTime == null) {
+        _dateTime = DateTime.parse("2020-01-01 00:00:00");
+      } else if (DateTime.parse("2020-01-01 00:00:00").compareTo(_dateTime) == 0) {
+        _dateTime = DateTime.parse("2020-01-01 00:00:01");
+      } else {
+        _dateTime = DateTime.parse("2020-01-01 00:00:00");
+      }
+
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
 //      _timer = Timer(
@@ -65,11 +72,15 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
       // TODO
       _timer = Timer(
-        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+        Duration(seconds: 3) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
     });
   }
+
+  get theme => Theme.of(context).brightness == Brightness.light
+      ? NomeyhoTheme.lightTheme
+      : NomeyhoTheme.darkTheme;
 
   get time => DateFormat.Hms().format(_dateTime);
 
@@ -79,61 +90,63 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
   // get minute => DateFormat('mm').format(_dateTime);
 
-  Widget _withSemantics({Widget child}) {
+  Widget _buildClock({Widget child}) {
     return Semantics.fromProperties(
       properties: SemanticsProperties(
         label: 'Digital clock with time $time',
         value: time,
       ),
-      child: child,
+      child: Row(children: [
+        // Hour: tens digit
+        Digit(
+          digit: int.parse(hour[0]),
+          color: theme.accentColor,
+          clockColor: theme.clockColor,
+          thickness: 6,
+        ),
+        // Hour: units digit
+        Digit(
+          digit: int.parse(hour[1]),
+          color: theme.accentColor,
+          clockColor: theme.clockColor,
+          thickness: 6,
+        ),
+        // Minute: tens digit
+        Digit(
+          digit: int.parse(minute[0]),
+          color: theme.primaryColor,
+          clockColor: theme.clockColor,
+          thickness: 2,
+        ),
+        // Minute: units digit
+        Digit(
+          digit: int.parse(minute[1]),
+          color: theme.primaryColor,
+          clockColor: theme.clockColor,
+          thickness: 2,
+        ),
+      ]),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return _withSemantics(
-      child: NomeyhoTheme(
-        /// Use a builder to get access to the inherited theme
-        child: Builder(builder: (context) {
-          return Container(
-            color: NomeyhoTheme.of(context).backgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Date(dateTime: _dateTime),
-                  Row(children: [
-                    // Hour: tens digit
-                    Digit(
-                      digit: int.parse(hour[0]),
-                      color: NomeyhoTheme.of(context).accent_700,
-                      thickness: 6,
-                    ),
-                    // Hour: units digit
-                    Digit(
-                      digit: int.parse(hour[1]),
-                      color: NomeyhoTheme.of(context).accent_700,
-                      thickness: 6,
-                    ),
-                    // Minute: tens digit
-                    Digit(
-                      digit: int.parse(minute[0]),
-                      color: NomeyhoTheme.of(context).primary_700,
-                      thickness: 2,
-                    ),
-                    // Minute: units digit
-                    Digit(
-                      digit: int.parse(minute[1]),
-                      color: NomeyhoTheme.of(context).primary_700,
-                      thickness: 2,
-                    ),
-                  ])
-                ],
-              ),
+    return Container(
+      color: theme.backgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Date(
+              dateTime: _dateTime,
+              dayColor: theme.primaryColor,
+              dateColor: theme.accentColor,
+              fontFamily: theme.fontFamily,
             ),
-          );
-        }),
+            _buildClock(),
+          ],
+        ),
       ),
     );
   }

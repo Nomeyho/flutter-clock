@@ -1,52 +1,39 @@
 import 'package:flutter/material.dart';
 
-// TODO: no need for the inherited widget after refactoring "date.dart"
-class NomeyhoTheme extends InheritedWidget {
+class NomeyhoTheme {
   /// Light theme
-  static final NomeyhoThemeData lightTheme = NomeyhoThemeData(
-    backgroundColor: Color(0xff0a141b),
-    primary_700: Color(0xff74e9fd),
-    accent_700: Color(0xfffd8074),
+  static final NomeyhoTheme lightTheme = NomeyhoTheme(
+    backgroundColor: Color(0xfffffbe0),
+    primaryColor: Color(0xff66bfc0),
+    accentColor: Color(0xffcc5610),
+    clockColor: Color(0xff553d38).withAlpha(20),
     fontFamily: 'Barlow',
   );
 
   /// Dark theme
-  static final NomeyhoThemeData darkTheme = NomeyhoThemeData(
+  static final NomeyhoTheme darkTheme = NomeyhoTheme(
     backgroundColor: Color(0xff0a141b),
-    primary_700: Color(0xff74e9fd),
-    accent_700: Color(0xfffd8074),
+    primaryColor: Color(0xff74e9fd),
+    accentColor: Color(0xfffd8074),
+    clockColor: Colors.white.withAlpha(10),
     fontFamily: 'Barlow',
   );
 
-  NomeyhoTheme({
-    @required Widget child,
-  })  : assert(child != null),
-        super(child: child);
-
-  static NomeyhoThemeData of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightTheme
-        : darkTheme;
-  }
-
-  @override
-  bool updateShouldNotify(NomeyhoTheme oldWidget) {
-    return false;
-  }
-}
-
-class NomeyhoThemeData {
   final Color backgroundColor;
-  // primary
-  final Color primary_700;
-  // accent
-  final Color accent_700;
+  final Color primaryColor;
+  final Color accentColor;
+  final Color clockColor;
   final String fontFamily;
 
-  NomeyhoThemeData({
-    this.backgroundColor,
-    this.primary_700,
-    this.accent_700,
-    this.fontFamily,
-  });
+  NomeyhoTheme({
+    @required this.backgroundColor,
+    @required this.primaryColor,
+    @required this.accentColor,
+    @required this.clockColor,
+    @required this.fontFamily,
+  })  : assert(backgroundColor != null),
+        assert(primaryColor != null),
+        assert(accentColor != null),
+        assert(clockColor != null),
+        assert(fontFamily != null);
 }

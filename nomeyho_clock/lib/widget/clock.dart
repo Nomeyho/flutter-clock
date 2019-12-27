@@ -10,16 +10,19 @@ class Clock extends StatelessWidget {
   final Animation<double> minuteAnimation;
   final Animation<double> hourAnimation;
   final Color handColor;
+  final Color clockColor;
   final double thickness;
 
   Clock({
     @required this.minuteAnimation,
     @required this.hourAnimation,
     @required this.handColor,
+    @required this.clockColor,
     @required this.thickness,
   })  : assert(minuteAnimation != null),
         assert(hourAnimation != null),
         assert(handColor != null),
+        assert(clockColor != null),
         assert(thickness != null);
 
   Widget _buildMinuteHand() {
@@ -55,10 +58,10 @@ class Clock extends StatelessWidget {
       child: SizedBox.expand(
         child: CustomPaint(
           painter: ClockPainter(
-            borderColor: Colors.white.withAlpha(10), // TODO quid light theme?
+            borderColor: clockColor,
             borderLineWidth: 2,
             tickMarkLength: 4,
-            tickMarkColor: Colors.white.withAlpha(10), // TODO
+            tickMarkColor: clockColor,
             tickMarkWidth: 2,
           ),
         ),

@@ -5,17 +5,20 @@ import 'package:nomeyho_clock/widget/clock.dart';
 class Digit extends StatefulWidget {
   final int digit;
   final Color color;
+  final Color clockColor;
   final double thickness;
 
   Digit({
     @required this.digit,
     @required this.color,
+    @required this.clockColor,
     @required this.thickness,
   })
       :
         assert(digit != null),
         assert(digit >= 0 && digit <= 9),
         assert(color != null),
+        assert(clockColor != null),
         assert(thickness != null);
 
   /// Let 0 be the predecessor of 9.
@@ -32,7 +35,7 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 3000),
       vsync: this,
     );
     _controller.forward();
@@ -73,6 +76,7 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
       minuteAnimation: _getMinuteAnimation(previousTime, time),
       hourAnimation: _getHourAnimation(previousTime, time),
       handColor: widget.color,
+      clockColor: widget.clockColor,
       thickness: widget.thickness,
     );
   }

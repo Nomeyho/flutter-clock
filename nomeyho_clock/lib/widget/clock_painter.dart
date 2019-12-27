@@ -10,7 +10,9 @@ class ClockPainter extends CustomPainter {
     @required this.tickMarkLength,
     @required Color tickMarkColor,
     @required double tickMarkWidth,
-  })  : /// Border
+  })  :
+
+        /// Border
         assert(borderColor != null),
         assert(borderLineWidth != null),
         assert(borderLineWidth > 0),
@@ -35,21 +37,20 @@ class ClockPainter extends CustomPainter {
   final Paint tickMarkPaint;
 
   /// As a percentage of the parent width
-  static const double outerBorderRadius = 0.95; // TODO padding?
-  static const double innerBorderRadius = 0.8;
+  static const double padding = 0.05;
 
-  void _paintBorders(Canvas canvas, Size size) {
+  void _paintBorder(Canvas canvas, Size size) {
     final center = (Offset.zero & size).center;
-    final outerRadius = (size.shortestSide / 2) * outerBorderRadius;
+    final radius = (size.shortestSide / 2) * (1 - padding);
 
-    canvas.drawCircle(center, outerRadius, borderPaint);
+    canvas.drawCircle(center, radius, borderPaint);
   }
 
   void _paintTickMarks(Canvas canvas, Size size) {
     final center = (Offset.zero & size).center;
     canvas.translate(center.dx, center.dy);
 
-    final radius = (size.width / 2) * innerBorderRadius;
+    final radius = (size.width / 2) * (1 - 3 * padding);
     final angleIncrement = 2 * math.pi / 4;
     final startOffset = Offset(0.0, -radius);
     final endOffset = Offset(0.0, -radius + tickMarkLength);
@@ -62,7 +63,7 @@ class ClockPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    _paintBorders(canvas, size);
+    _paintBorder(canvas, size);
     _paintTickMarks(canvas, size);
   }
 

@@ -20,16 +20,9 @@ flutter:
   uses-material-design: true
   fonts:
     # https://fonts.google.com/specimen/Barlow
-    # TODO remove unused fonts
     - family: Barlow
       fonts:
         - asset: 'assets/fonts/Barlow-Bold.ttf'
           weight: 700
-        - asset: 'assets/fonts/Barlow-Regular.ttf'
-          weight: 400
-        - asset: 'assets/fonts/Barlow-Light.ttf'
-          weight: 100
-        - asset: 'assets/fonts/Barlow-ExtraLight.ttf'
-          weight: 100
         - asset: 'assets/fonts/Barlow-Thin.ttf'
           weight: 100

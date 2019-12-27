@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:intl/intl.dart';
-import 'package:nomeyho_clock/nomeyho_theme.dart';
 
 class Date extends StatelessWidget {
   final DateTime dateTime;
+  final Color dayColor;
+  final Color dateColor;
+  final String fontFamily;
 
   Date({
     @required this.dateTime,
-  }): assert(dateTime != null);
+    @required this.dayColor,
+    @required this.dateColor,
+    @required this.fontFamily,
+  })  : assert(dateTime != null),
+        assert(dayColor != null),
+        assert(dateColor != null),
+        assert(fontFamily != null);
 
   get day => '${DateFormat('EEEE').format(dateTime)}';
 
@@ -33,7 +41,7 @@ class Date extends StatelessWidget {
         child: RichText(
           text: TextSpan(
             style: TextStyle(
-              fontFamily: NomeyhoTheme.of(context).fontFamily,
+              fontFamily: fontFamily,
               fontSize: width / 15, // responsive text
             ),
             children: <TextSpan>[
@@ -41,14 +49,14 @@ class Date extends StatelessWidget {
                 text: '$day, ',
                 style: TextStyle(
                   fontWeight: FontWeight.w100,
-                  color: NomeyhoTheme.of(context).primary_700,
+                  color: dayColor,
                 ),
               ),
               TextSpan(
                 text: date,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: NomeyhoTheme.of(context).accent_700,
+                  color: dateColor,
                 ),
               ),
             ],
