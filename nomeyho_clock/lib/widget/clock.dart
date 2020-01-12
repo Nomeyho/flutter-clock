@@ -9,19 +9,19 @@ final radiansPerHour = radians(360 / 12);
 class Clock extends StatelessWidget {
   final Animation<double> minuteAnimation;
   final Animation<double> hourAnimation;
-  final Color handColor;
+  final Animation<Color> handColorAnimation;
   final Color clockColor;
   final double thickness;
 
   Clock({
     @required this.minuteAnimation,
     @required this.hourAnimation,
-    @required this.handColor,
+    @required this.handColorAnimation,
     @required this.clockColor,
     @required this.thickness,
   })  : assert(minuteAnimation != null),
         assert(hourAnimation != null),
-        assert(handColor != null),
+        assert(handColorAnimation != null),
         assert(clockColor != null),
         assert(thickness != null);
 
@@ -33,7 +33,7 @@ class Clock extends StatelessWidget {
           size: 0.60,
           thickness: thickness,
           angleRadians: minuteAnimation.value * radiansPerTick,
-          color: handColor,
+          color: handColorAnimation.value,
         );
       },
     );
@@ -47,7 +47,7 @@ class Clock extends StatelessWidget {
           size: 0.60,
           thickness: thickness,
           angleRadians: hourAnimation.value * radiansPerHour,
-          color: handColor,
+          color: handColorAnimation.value,
         );
       },
     );

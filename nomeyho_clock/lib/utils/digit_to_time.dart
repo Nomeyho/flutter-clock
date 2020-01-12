@@ -10,8 +10,8 @@ import 'package:nomeyho_clock/model/time.dart';
 /// Each time value represents up to two segments once rendered as an analog
 /// clock (one for the hour hand and one for the minute hand).
 ///
-/// Combining the appropriate time values, the six clocks effectively
-/// represent the provided digit once laid out in a 2-by-3 grid.
+/// Combining the appropriate time values, the six clocks represent
+/// the expected digit once laid out in a 2-by-3 grid.
 /// For digit 8, we have:
 /// 🕞🕤
 /// 🕒🕘

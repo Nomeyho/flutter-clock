@@ -57,15 +57,10 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
-//      _timer = Timer(
-//        Duration(minutes: 1) -
-//            Duration(seconds: _dateTime.second) -
-//            Duration(milliseconds: _dateTime.millisecond),
-//        _updateTime,
-//      );
-
-      // TODO
       _timer = Timer(
+        //Duration(minutes: 1) -
+        //    Duration(seconds: _dateTime.second) -
+        //    Duration(milliseconds: _dateTime.millisecond),
         Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
@@ -81,8 +76,8 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   get hour =>
       DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
 
-  get minute => _dateTime.second.toString().padLeft(2, '0'); // TODO
-  // get minute => DateFormat('mm').format(_dateTime);
+  get minute => _dateTime.second.toString().padLeft(2, '0');
+  //get minute => DateFormat('mm').format(_dateTime);
 
   Widget _buildClock({Widget child}) {
     return Semantics.fromProperties(

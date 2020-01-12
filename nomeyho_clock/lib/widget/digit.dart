@@ -77,11 +77,20 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
     ).animate(_curveAnimation);
   }
 
+  /// Improve the readability of the digit by making the "disabled" clock
+  /// disappear (opacity = 0).
+  Animation<Color> _getHandOpacityAnimation(previousTime, time) {
+    return ColorTween(
+      begin: widget.color.withOpacity(1),
+      end: widget.color.withOpacity(time.disabled ? 0 : 1),
+    ).animate(_curveAnimation);
+  }
+
   Clock _buildClock(previousTime, time) {
     return Clock(
       minuteAnimation: _getMinuteAnimation(previousTime, time),
       hourAnimation: _getHourAnimation(previousTime, time),
-      handColor: widget.color,
+      handColorAnimation: _getHandOpacityAnimation(previousTime, time),
       clockColor: widget.clockColor,
       thickness: widget.thickness,
     );
