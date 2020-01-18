@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class NomeyhoTheme {
   /// Light theme
   static final NomeyhoTheme lightTheme = NomeyhoTheme(
-    backgroundColor: Color(0xfffffbe0),
-    primaryColor: Color(0xff66bfc0),
-    accentColor: Color(0xffcc5610),
-    clockColor: Color(0xff553d38).withAlpha(20),
+    backgroundColor: Color(0xffF9F9FA),
+    primaryColor: Color(0xff3D5C93),
+    accentColor: Color(0xffE35F66),
+    clockColor: Colors.black.withAlpha(15),
     fontFamily: 'Barlow',
     digitAnimationDuration: 500,
   );

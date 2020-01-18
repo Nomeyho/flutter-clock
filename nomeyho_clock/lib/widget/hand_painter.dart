@@ -32,11 +32,13 @@ class HandPainter extends CustomPainter {
     // We want to start at the top, not at the x-axis, so add pi/2.
     final angle = angleRadians - math.pi / 2.0;
     final length = size.shortestSide * 0.5 * handSize;
-    final middle = center + Offset(math.cos(angle), math.sin(angle)) * length / 2;
+    final middle =
+        center + Offset(math.cos(angle), math.sin(angle)) * length / 2;
     final end = center + Offset(math.cos(angle), math.sin(angle)) * length;
 
+    // Split the drawing in two lines in order to have different StrokeCap
     canvas.drawLine(center, middle, handPaint(StrokeCap.round));
-    canvas.drawLine(middle,  end, handPaint(StrokeCap.square));
+    canvas.drawLine(middle, end, handPaint(StrokeCap.square));
   }
 
   @override

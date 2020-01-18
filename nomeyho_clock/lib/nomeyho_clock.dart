@@ -91,7 +91,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           digit: int.parse(hour[0]),
           color: theme.accentColor,
           clockColor: theme.clockColor,
-          thickness: 6,
+          thickness: 4,
           animationDuration: theme.digitAnimationDuration,
         ),
         // Hour: units digit
@@ -99,7 +99,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           digit: int.parse(hour[1]),
           color: theme.accentColor,
           clockColor: theme.clockColor,
-          thickness: 6,
+          thickness: 4,
           animationDuration: theme.digitAnimationDuration,
         ),
         // Minute: tens digit
@@ -107,7 +107,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           digit: int.parse(minute[0]),
           color: theme.primaryColor,
           clockColor: theme.clockColor,
-          thickness: 2,
+          thickness: 4,
           animationDuration: theme.digitAnimationDuration,
         ),
         // Minute: units digit
@@ -115,7 +115,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           digit: int.parse(minute[1]),
           color: theme.primaryColor,
           clockColor: theme.clockColor,
-          thickness: 2,
+          thickness: 4,
           animationDuration: theme.digitAnimationDuration,
         ),
       ]),

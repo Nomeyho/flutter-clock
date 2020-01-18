@@ -43,19 +43,18 @@ class Date extends StatelessWidget {
             style: TextStyle(
               fontFamily: fontFamily,
               fontSize: width / 15, // responsive text
+              fontWeight: FontWeight.w100,
             ),
             children: <TextSpan>[
               TextSpan(
                 text: '$day, ',
                 style: TextStyle(
-                  fontWeight: FontWeight.w100,
                   color: dayColor,
                 ),
               ),
               TextSpan(
                 text: date,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
                   color: dateColor,
                 ),
               ),
