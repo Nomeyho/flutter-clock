@@ -18,11 +18,11 @@ The segments composing each digit are made-up of the analog clock hands.
 Each digit from 0 to 9 can be represented by analog clocks set to the appropriate time.
 
 <p align="center">
-    <img src='screenshots/0.png' width='100' style='box-shadox: 1px 1px 5px gray'>
-    <img src='screenshots/1.png' width='100' style='box-shadox: 1px 1px 5px gray'>
-    <img src='screenshots/2.png' width='100' style='box-shadox: 1px 1px 5px gray'>
-    <img src='screenshots/3.png' width='100' style='box-shadox: 1px 1px 5px gray'>
-    <img src='screenshots/4.png' width='100' style='box-shadox: 1px 1px 5px gray'>
+    <img src='screenshots/0.png' width='100'>
+    <img src='screenshots/1.png' width='100'>
+    <img src='screenshots/2.png' width='100'>
+    <img src='screenshots/3.png' width='100'>
+    <img src='screenshots/4.png' width='100'>
 </p>
 <p align="center" style="margin-bottom: 0">
     <img src='screenshots/5.png' width='100'>
@@ -33,12 +33,12 @@ Each digit from 0 to 9 can be represented by analog clocks set to the appropriat
 </p>
 
 ### Animation
-<img align="left" src='screenshots/animation.gif' width='120' style='box-shadox: 1px 1px 5px gray'>
-
 The transition between the digit makes the Nomeyho clock special. One or more digit change every minute.
 The individual analog clocks have to display a new time and the hands simultaneously rotates clockwise to
 reach their new position. The unused hands will fade out to improve the readability of the overall digit.
 The result is even better when multiple digits animates.
+
+<img src='screenshots/animation.gif' width='120'>
 
 ### Details
 A particular attention was given to the following details:
@@ -60,8 +60,8 @@ The current date can be displayed in multiple languages thanks to
 the [intl](https://pub.dev/packages/intl) package. Both 12-hour format and 24-hour format are supported.
 
 <p align="center">
-    <img src='screenshots/french.png' width='350' style='box-shadox: 1px 1px 5px gray; margin-right: 5px'>
-    <img src='screenshots/spanish.png' width='350' style='box-shadox: 1px 1px 5px gray'>
+    <img src='screenshots/french.png' width='350'>
+    <img src='screenshots/spanish.png' width='350'>
 </p>
 
 ## Credits
