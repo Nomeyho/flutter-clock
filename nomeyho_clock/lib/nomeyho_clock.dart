@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter_clock_helper/model.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:nomeyho_clock/nomeyho_theme.dart';
 import 'package:nomeyho_clock/widget/date.dart';
@@ -24,6 +25,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting();
     widget.model.addListener(_updateModel);
     _updateTime();
     _updateModel();
@@ -54,7 +56,6 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
   void _updateTime() {
     setState(() {
       _dateTime = DateTime.now();
-
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
       _timer = Timer(
@@ -124,6 +125,8 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).languageCode;
+
     return Container(
       color: theme.backgroundColor,
       child: Padding(
@@ -132,6 +135,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Date(
+              locale: locale,
               dateTime: _dateTime,
               dayColor: theme.primaryColor,
               dateColor: theme.accentColor,
