@@ -8,7 +8,7 @@ class NomeyhoTheme {
     accentColor: Color(0xffE35F66),
     clockColor: Colors.black.withAlpha(15),
     fontFamily: 'Barlow',
-    digitAnimationDurationMs: 1200, // TODO
+    digitAnimationDurationMs: 1200,
   );
 
   /// Dark theme
@@ -18,7 +18,7 @@ class NomeyhoTheme {
     accentColor: Color(0xfffd8074),
     clockColor: Colors.white.withAlpha(10),
     fontFamily: 'Barlow',
-    digitAnimationDurationMs: 1200, // TODO
+    digitAnimationDurationMs: 1200,
   );
 
   final Color backgroundColor;

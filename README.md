@@ -1,11 +1,11 @@
-# Nomeyho clock
+# Nomeyho's clock
 
-Submitted for the [Flutter Clock Challenge](https://flutter.dev/clock).
-
-[VIDEO HERE]
+* Submitted for the [Flutter Clock Challenge](https://flutter.dev/clock).
+* Video: [screenshots/video.mp4](screenshots/video.mp4)
+* Live demo: https://nomeyho.github.io/flutter-clock
 
 ## Presentation
-The Nomeyho clock is a clock face UI for the [Lenovo Smart Clock](https://www.lenovo.com/fr/fr/smart-clock/).
+The Nomeyho's clock is a clock face UI for the [Lenovo Smart Clock](https://www.lenovo.com/fr/fr/smart-clock/).
 It displays the current date and time in a unique way by combining digital and analog clocks.
 
 <p align="center">
@@ -13,7 +13,7 @@ It displays the current date and time in a unique way by combining digital and a
 </p>
 
 ### Digits
-The Nomeyho clock is a digital clock made of 24 analog clocks.
+The Nomeyho's clock is a digital clock made of 24 analog clocks.
 Each digit consists of six analog clocks, laid out on a 2-by-3 grid.
 
 <p align="center">
@@ -21,7 +21,7 @@ Each digit consists of six analog clocks, laid out on a 2-by-3 grid.
 </p>
 
 The segments composing each digit are made of the analog clock hands. The digits from 0 to 9
-can be represented provided that the analog clocks are set to the appropriate time.
+can be represented by settings the analog clocks to the appropriate time.
 
 <p align="center">
     <img src='screenshots/0.png' width='100'>
@@ -73,3 +73,4 @@ the [intl](https://pub.dev/packages/intl) package. Both 12-hour and 24-hour form
 * [ClockClock 24](https://clockclock.com/) for the inspiration
 * [Barlow](https://fonts.google.com/specimen/Barlow) for the font
 * The Flutter team for the awesome framework
+* [Submarine](https://www.youtube.com/channel/UCs5ib8kDfUmFBrL1BiEivEA) song
