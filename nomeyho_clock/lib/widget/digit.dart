@@ -7,20 +7,20 @@ class Digit extends StatefulWidget {
   final Color color;
   final Color clockColor;
   final double thickness;
-  final int animationDuration;
+  final int animationDurationMs;
 
   Digit({
     @required this.digit,
     @required this.color,
     @required this.clockColor,
     @required this.thickness,
-    @required this.animationDuration,
+    @required this.animationDurationMs,
   })  : assert(digit != null),
         assert(digit >= 0 && digit <= 9),
         assert(color != null),
         assert(clockColor != null),
         assert(thickness != null),
-        assert(animationDuration != null);
+        assert(animationDurationMs != null);
 
   /// Let 0 be the predecessor of 9.
   get previousDigit => digit == 0 ? 9 : (digit - 1);
@@ -36,7 +36,7 @@ class _DigitState extends State<Digit> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.animationDuration),
+      duration: Duration(milliseconds: widget.animationDurationMs),
       vsync: this,
     );
     _controller.forward();

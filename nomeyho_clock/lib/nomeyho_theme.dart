@@ -8,7 +8,7 @@ class NomeyhoTheme {
     accentColor: Color(0xffE35F66),
     clockColor: Colors.black.withAlpha(15),
     fontFamily: 'Barlow',
-    digitAnimationDuration: 500,
+    digitAnimationDurationMs: 1200, // TODO
   );
 
   /// Dark theme
@@ -18,7 +18,7 @@ class NomeyhoTheme {
     accentColor: Color(0xfffd8074),
     clockColor: Colors.white.withAlpha(10),
     fontFamily: 'Barlow',
-    digitAnimationDuration: 500,
+    digitAnimationDurationMs: 1200, // TODO
   );
 
   final Color backgroundColor;
@@ -26,7 +26,7 @@ class NomeyhoTheme {
   final Color accentColor;
   final Color clockColor;
   final String fontFamily;
-  final int digitAnimationDuration; // ms
+  final int digitAnimationDurationMs; // ms
 
   NomeyhoTheme({
     @required this.backgroundColor,
@@ -34,11 +34,11 @@ class NomeyhoTheme {
     @required this.accentColor,
     @required this.clockColor,
     @required this.fontFamily,
-    @required this.digitAnimationDuration,
+    @required this.digitAnimationDurationMs,
   })  : assert(backgroundColor != null),
         assert(primaryColor != null),
         assert(accentColor != null),
         assert(clockColor != null),
         assert(fontFamily != null),
-        assert(digitAnimationDuration != null);
+        assert(digitAnimationDurationMs != null);
 }

@@ -19,7 +19,7 @@ class NomeyhoClock extends StatefulWidget {
 }
 
 class _NomeyhoClockState extends State<NomeyhoClock> {
-  DateTime _dateTime;
+  DateTime _dateTime = DateTime.now(); // TODO
   Timer _timer;
 
   @override
@@ -55,14 +55,14 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   void _updateTime() {
     setState(() {
-      _dateTime = DateTime.now();
+      _dateTime = _dateTime.add(Duration(seconds: 1));
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
       _timer = Timer(
         //Duration(minutes: 1) -
         //    Duration(seconds: _dateTime.second) -
         //    Duration(milliseconds: _dateTime.millisecond),
-        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+        Duration(seconds: 3) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
     });
@@ -93,7 +93,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.accentColor,
           clockColor: theme.clockColor,
           thickness: 4,
-          animationDuration: theme.digitAnimationDuration,
+          animationDurationMs: theme.digitAnimationDurationMs,
         ),
         // Hour: units digit
         Digit(
@@ -101,7 +101,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.accentColor,
           clockColor: theme.clockColor,
           thickness: 4,
-          animationDuration: theme.digitAnimationDuration,
+          animationDurationMs: theme.digitAnimationDurationMs,
         ),
         // Minute: tens digit
         Digit(
@@ -109,7 +109,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.primaryColor,
           clockColor: theme.clockColor,
           thickness: 4,
-          animationDuration: theme.digitAnimationDuration,
+          animationDurationMs: theme.digitAnimationDurationMs,
         ),
         // Minute: units digit
         Digit(
@@ -117,7 +117,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
           color: theme.primaryColor,
           clockColor: theme.clockColor,
           thickness: 4,
-          animationDuration: theme.digitAnimationDuration,
+          animationDurationMs: theme.digitAnimationDurationMs,
         ),
       ]),
     );
