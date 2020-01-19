@@ -20,18 +20,17 @@ jobs:
       - run: |
           cd nomeyho_clock
           flutter analyze
+      # Publish
       - run: |
           cd nomeyho_clock
           flutter build web
-      # Publish
-      - run: |
+          cd build/web
+          git init
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add nomeyho_clock/build/web -f
-          git commit -m "Update page"
-          git branch -d origin/gh-pages
-      - uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          force: true
+          git status
+          git remote add origin https://${{secrets.ACTION_TOKEN}}@github.com/Nomeyho/flutter-clock.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "Update"
+          git push origin gh-pages -f
