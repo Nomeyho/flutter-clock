@@ -55,7 +55,7 @@ class _NomeyhoClockState extends State<NomeyhoClock> {
 
   void _updateTime() {
     setState(() {
-      _dateTime = _dateTime.add(Duration(seconds: 1));
+      _dateTime = DateTime.now();
       // Update once per minute. Make sure to do it at the beginning of each
       // new minute, so that the clock is accurate.
       _timer = Timer(
