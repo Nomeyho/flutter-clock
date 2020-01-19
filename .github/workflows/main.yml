@@ -1,4 +1,3 @@
-# TODO: Use a single job once the Web is available in the stable channel
 on: push
 jobs:
   build-and-test:
@@ -30,39 +29,9 @@ jobs:
           git config --local user.name "GitHub Action"
           git add nomeyho_clock/build/web -f
           git commit -m "Update page"
+          git branch -d origin/gh-pages
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-# TODO: "validation failed"
-#  release:
-#    runs-on: ubuntu-latest
-#    steps:
-#      # Setup
-#      - uses: actions/checkout@v1
-#      # Release
-#      - name: Create artifact
-#        run: |
-#          rm -rf nomeyho_clock/ios
-#          rm -rf nomeyho_clock/android
-#          rm -rf nomeyho_clock/web
-#          zip -r nomeyho_clock.zip ./nomeyho_clock ./flutter_clock_helper
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1.0.0
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          tag_name: ${{ github.ref }}
-#          release_name: Release ${{ github.ref }}
-#          draft: false
-#          prerelease: false
-#      - name: Upload Release Asset
-#        uses: actions/upload-release-asset@v1.0.1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./nomeyho_clock.zip
-#          asset_name: nomeyho_clock.zip
-#          asset_content_type: application/zip
+          force: true

@@ -1,8 +1,8 @@
 # Nomeyho's clock
 
 * Submitted for the [Flutter Clock Challenge](https://flutter.dev/clock).
-* Video: [screenshots/video.mp4](screenshots/video.mp4)
-* Live demo: https://nomeyho.github.io/flutter-clock
+* [Video](https://www.youtube.com/watch?v=674AH5mmPy0)
+* [Live demo](https://nomeyho.github.io/flutter-clock)
 
 ## Presentation
 The Nomeyho's clock is a clock face UI for the [Lenovo Smart Clock](https://www.lenovo.com/fr/fr/smart-clock/).
